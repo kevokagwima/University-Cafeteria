@@ -11,3 +11,4 @@
 <img src="!https://user-images.githubusercontent.com/63863253/209917583-f8863849-037a-450a-8485-43c6b2d71de7.png">
 <h1>Admin Module</h1>
 <p>In this module, the admin can confirm and decline any order placed by students as well as update the cafeteria menu by adding or removing items</p>
+<img src="!https://user-images.githubusercontent.com/63863253/209917999-00ef6d62-6c70-44c5-b9c1-fb00bcd98792.png">
