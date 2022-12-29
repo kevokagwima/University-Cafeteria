@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+{% endblock %}
+
+{% block title %}
+Joes Bistro | Cart
+{% endblock %}
+
+{% block body %}
+<h2>My Cart</h1>
+  <div class="cart">
+    <div class="order-details">
+      {% if existing_order %}
+      <b>#{{ existing_order.order_id }}</b>
+      <div class="order-info">
+        {% if order_items %}
+        {% set total = [] %}
+        {% for order in order_items %}
+        {% for meal in meals if meal.id == order.meal %}
+        {{ total.append(meal.price) or "" }}
+        <a href="{{ url_for('delete_order_item', order_item=order.id) }}">
+          <div class="order--menu">
+            <p>{{ meal.name }}</p>
+            <p>{{ "Ksh {:,}".format(meal.price) }}</p>
+          </div>
+        </a>
+        {% endfor %}
+        {% endfor %}
+        {% else %}
+        <h4 class="else">No Items</h4>
+        {% endif %}
+      </div>
+      {% if existing_order.placed == False %}
+      <a href="{{ url_for('place_order', order=existing_order.id) }}">
+        <button id="place-order">Place Oder</button>
+      </a>
+      {% else %}
+      <button id="placed-order">Order is placed</button>
+      {% endif %}
+      {% else %}
+      <h4 class="else">No Order</h4>
+      {% endif %}
+    </div>
+    <div class="amount">
+      <h4>Total</h3>
+        <div class="amount-info">
+          <p>{{ "Ksh {:,}".format(total|sum) }}</p>
+        </div>
+    </div>
+  </div>
+  {% endblock %}

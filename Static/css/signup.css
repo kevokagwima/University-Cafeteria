@@ -1,0 +1,53 @@
+.form {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+}
+
+.form > h4 {
+  text-align: center;
+  font-family: var(--font-1);
+  font-size: 2rem;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  background-color: var(--other-bgcolor);
+  padding: 2rem;
+  max-width: 40vw;
+  margin-inline: auto;
+  border-radius: 0.3rem;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.input label {
+  font-family: var(--font-3);
+}
+
+.input input {
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+form button {
+  margin-top: 1rem;
+  grid-column: 1/3;
+  padding: 1em 0.4em;
+  border: none;
+  background-color: greenyellow;
+  border-radius: 0.2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: pointer;
+}

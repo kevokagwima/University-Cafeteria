@@ -1,0 +1,81 @@
+#header {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-family: var(--font-1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#search {
+  border: none;
+  background-color: var(--sec-bgcolor);
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  color: #212121;
+  font-family: var(--font-3);
+  min-width: 20vw;
+  cursor: pointer;
+}
+
+#search:focus {
+  outline: 2px solid greenyellow;
+}
+
+#search::placeholder {
+  color: grey;
+}
+
+.buttons a {
+  font-size: 0.8rem;
+  font-family: var(--font-3);
+  background-color: blue;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.3rem;
+}
+
+.all-meals {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+.meal {
+  padding: 1rem;
+  outline: 2px solid grey;
+  box-shadow: 0 0 10px -5px black;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  color: black;
+  background-color: var(--other-bgcolor);
+  color: whitesmoke;
+  transition: 250ms ease-in-out;
+}
+
+.meal:hover {
+  background-color: #377d71;
+  outline: 2px solid greenyellow;
+  /* color: #212121; */
+}
+
+.meal--name {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.meal--name p {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-family: var(--font-2);
+}
+
+.meal--name span {
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

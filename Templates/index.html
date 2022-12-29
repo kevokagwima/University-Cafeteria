@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block title %}
+Joes Bistro | Home
+{% endblock %}
+
+{% block body %}
+<h4 id="header">
+  Menu
+  <input type="text" name="" id="search" placeholder="Search for a meal">
+  {% if current_user.account_type == "Admin" %}
+  <div class="buttons">
+    <a href="{{ url_for('add_meal') }}">Add Meal</a>
+  </div>
+  {% endif %}
+</h4>
+<div class="all-meals">
+  {% for meal in meals %}
+  <a href="{{ url_for('new_order', meal_id=meal.id) }}">
+    <div class="meal">
+      <div class="meal--name">
+        <p>Meal Name</p>
+        <span>{{ meal.name }}</span>
+      </div>
+      <div class="meal--name">
+        <p>Meal Price</p>
+        <span>{{ "Ksh {:,}".format(meal.price) }}</span>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+<script src="{{ url_for('static', filename='Js/index.js') }}"></script>
+{% endblock %}

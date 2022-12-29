@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% block head %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>{% block title %} {% endblock %}</title>
+</head>
+{% endblock %}
+
+<body>
+  <header>
+    <a href="{{ url_for('index') }}">
+      <h4 id="logo">Joes Bistro</h4>
+    </a>
+    <div class="links">
+      {% if current_user.is_authenticated %}
+      <p>
+        <a href="{{ url_for('cart') }}">Cart</a>
+        {% if existing_order %}
+        <span id="count">{{ existing_order.order_items|count }}</span>
+        {% endif %}
+      </p>
+      <p id="login">Welcome, <b>{{ current_user.email }}</b></p>
+      <div class="login">
+        {% if current_user.account_type == "Student" %}
+        <a href="{{ url_for('orders') }}">My Orders</a>
+        {% else %}
+        <a href="{{ url_for('orders') }}">Orders</a>
+        {% endif %}
+        <a id="logout" href="{{ url_for('logout') }}">Logout</a>
+      </div>
+      {% else %}
+      <a href="{{ url_for('sign_up') }}">Sign Up</a>
+      <a href="{{ url_for('sign_in') }}">Sign In</a>
+      <a href="{{ url_for('admin_sign_in') }}">Admin</a>
+      {% endif %}
+    </div>
+  </header>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="tops">
+    {% for category, message in messages %}
+    <div class="alert alert-{{category}}">
+      <p>{{ message }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+  <div class="container">
+    {% block body %}{% endblock %}
+  </div>
+
+  <script src="{{ url_for('static', filename='Js/base.js') }}"></script>
+</body>
+
+</html>

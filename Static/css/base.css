@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Khojki:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --main-bgcolor: #1c6758;
+  --sec-bgcolor: #d6cda4;
+  --other-bgcolor: #3d8361;
+  --font-1: "Noto Serif Khojki", serif;
+  --font-2: "Nunito", sans-serif;
+  --font-3: "Varela Round", sans-serif;
+}
+
+::-webkit-scrollbar {
+  background-color: var(--main-bgcolor);
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--sec-bgcolor);
+  border-radius: 30rem;
+}
+
+body {
+  background-color: var(--main-bgcolor);
+}
+
+header {
+  position: fixed;
+  top: 0;
+  min-width: 100vw;
+  background-color: white;
+  padding: 0.5rem 2rem 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logo {
+  color: black;
+  font-size: 1.5rem;
+  font-family: var(--font-1);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  font-family: var(--font-3);
+}
+
+.links a {
+  color: #212121;
+}
+
+a {
+  text-decoration: none;
+}
+
+#login {
+  cursor: pointer;
+}
+
+#count {
+  color: red;
+}
+
+.login {
+  background-color: var(--sec-bgcolor);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  inset: 3rem -0.3rem auto 0;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  box-shadow: 0 0 10px -7px black;
+  display: none;
+}
+
+.show-login {
+  display: flex;
+}
+
+.login a {
+  padding: 1rem;
+  color: black;
+}
+
+#logout {
+  background-color: red;
+  color: white;
+}
+
+.container {
+  margin-top: 3.7rem;
+  padding: 1rem 2rem;
+  background-color: var(--main-bgcolor);
+  color: white;
+}
+
+.tops {
+  position: fixed;
+  top: 0.3rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  min-width: 60rem;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2px 0 0;
+  animation: fade-away 1s 6s forwards;
+}
+
+@keyframes fade-away {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.alert {
+  font-family: var(--font-3);
+  letter-spacing: 1px;
+  font-size: 15px;
+  margin-bottom: 4px;
+  width: max-content;
+  max-width: 30vw;
+  margin-inline: auto;
+  border-radius: 5px;
+  padding: 1rem;
+  box-shadow: 0 0 10px -6px black;
+}
+
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}

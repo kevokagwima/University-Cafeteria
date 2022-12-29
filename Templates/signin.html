@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+{% endblock %}
+
+{% block title %}
+Joes Bistro | Sign In
+{% endblock %}
+
+{% block body %}
+<div class="form">
+  <h4>Confirm Your Identity</h4>
+  <form action="#" , method="post">
+    {{ form.csrf_token }}
+    <div class="input">
+      {{ form.email_address.label }}
+      {{ form.email_address }}
+    </div>
+    <div class="input">
+      {{ form.password.label }}
+      {{ form.password }}
+    </div>
+    <button type="submit">Sign In</button>
+  </form>
+</div>
+{% endblock %}

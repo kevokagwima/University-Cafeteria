@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/orders.css') }}">
+{% endblock %}
+
+{% block title %}
+Joes Bistro | My Orders
+{% endblock %}
+
+{% block body %}
+<h4 id="header">
+  {% if current_user.account_type == "Student" %}
+  My Orders
+  {% else %}
+  Orders
+  {% endif %}
+</h4>
+<div class="orders">
+  {% for order in orders|sort(attribute="date", reverse=true) if current_user.account_type == "Student" and order.user
+  == current_user.phone_number %}
+  <div class="order-items">
+    <div class="order-info">
+      <p><b>#{{ order.order_id }}</b></p>
+      {% if order.placed == True and order.confirmed == False %}
+      <p id="pending">Pending</p>
+      {% elif order.confirmed == True %}
+      <p id="confirmed">Confirmed</p>
+      {% else %}
+      <p id="active">Active</p>
+      {% endif %}
+    </div>
+    <hr>
+    <div class="order-details">
+      {% set total = [] %}
+      {% for order_item in order_items if order_item.order == order.id %}
+      {% for meal in meals if meal.id == order_item.meal %}
+      {{ total.append(meal.price) or "" }}
+      <div class="meal">
+        <p>{{ meal.name }}</p>
+        <p>{{ "Ksh {:,}".format(meal.price) }}</p>
+      </div>
+      {% endfor %}
+      {% endfor %}
+      <p>Total - <b>{{ "Ksh {:,}".format(total|sum) }}</b>
+      </p>
+      {% if order.confirmed == False and current_user.account_type == "Admin" %}
+      <a class="confirm" href="{{ url_for('confirm_order', order=order.id) }}">Confirm</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  {% for order in orders|sort(attribute="date", reverse=true) if current_user.account_type == "Admin" %}
+  <div class="order-items">
+    <div class="order-info">
+      <p><b>
+          #{{ order.order_id }} -
+          {% for user in users if user.phone_number == order.user %}
+          {{ user.email }}
+          {% endfor %}
+        </b></p>
+      {% if order.placed == True and order.confirmed == False %}
+      <p id="pending">Pending</p>
+      {% elif order.confirmed == True %}
+      <p id="confirmed">Confirmed</p>
+      {% else %}
+      <p id="active">Active</p>
+      {% endif %}
+    </div>
+    <hr>
+    <div class="order-details">
+      {% set total = [] %}
+      {% for order_item in order_items if order_item.order == order.id %}
+      {% for meal in meals if meal.id == order_item.meal %}
+      {{ total.append(meal.price) or "" }}
+      <div class="meal">
+        <p>{{ meal.name }}</p>
+        <p>{{ "Ksh {:,}".format(meal.price) }}</p>
+      </div>
+      {% endfor %}
+      {% endfor %}
+      <p>Total - <b>{{ "Ksh {:,}".format(total|sum) }}</b>
+      </p>
+      {% if order.confirmed == False and order.placed == True and current_user.account_type == "Admin" %}
+      <div class="actions">
+        <a class="confirm" href="{{ url_for('confirm_order', order=order.id) }}">Confirm</a>
+        <a class="confirm" href="{{ url_for('delete_order', order=order.id) }}">Decline</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

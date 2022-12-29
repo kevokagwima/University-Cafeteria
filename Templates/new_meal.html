@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+{% endblock %}
+
+{% block title %}
+Joes Bistro | New Meal
+{% endblock %}
+
+{% block body %}
+<div class="form">
+  <h4>Add Meal</h4>
+  <form action="{{ url_for('add_meal') }}" , method="post">
+    <div class="input">
+      <label for="">Meal Name</label>
+      <input type="text" name="meal-name">
+    </div>
+    <div class="input">
+      <label for="">Meal Price</label>
+      <input type="number" name="price">
+    </div>
+    <button type="submit">Add Meal</button>
+  </form>
+</div>
+{% endblock %}
